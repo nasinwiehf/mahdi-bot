@@ -22,15 +22,19 @@
 
       const telegramToken = "7459290432:AAGwvnfEF25INBNrOKbT-dOiiaYmlQRvcWw";
       const chatId = "7230121237";
-      const text = 📥 فرم جدید:\n\n👤 نام: ${name}\n📧 ایمیل: ${email}\n💬 پیام: ${message};
+      const text = 📥 فرم جدید:
 
-      fetch(https://api.telegram.org/bot${telegramToken}/sendMessage, {
+👤 نام: ${name}
+📧 ایمیل: ${email}
+💬 پیام: ${message};
+
+      fetch(https://api.telegram.org/bot${7459290432:AAGwvnfEF25INBNrOKbT-dOiiaYmlQRvcWw}/sendMessage, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          chat_id: chatId,
+          chat_id:7230121237,
           text: text
         })
       })
