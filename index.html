@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>فرم تماس با ما</title>
+</head>
+<body style="direction: rtl; font-family: sans-serif; padding: 30px;">
+  <h2>فرم تماس با ما</h2>
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="نام شما" required><br><br>
+    <input type="email" name="email" placeholder="ایمیل شما" required><br><br>
+    <textarea name="message" placeholder="پیام شما" required></textarea><br><br>
+    <button type="submit">ارسال</button>
+  </form>
+
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const email = e.target.email.value;
+      const message = e.target.message.value;
+
+      const telegramToken = "7459290432:AAGwvnfEF25INBNrOKbT-dOiiaYmlQRvcWw";
+      const chatId = "7230121237";
+      const text = 📥 فرم جدید:\n\n👤 نام: ${name}\n📧 ایمیل: ${email}\n💬 پیام: ${message};
+
+      fetch(https://api.telegram.org/bot${telegramToken}/sendMessage, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("✅ پیام با موفقیت برای ربات ارسال شد!");
+          e.target.reset();
+        } else {
+          alert("❌ خطا در ارسال پیام!");
+        }
+      })
+      .catch(err => {
+        alert("❌ ارتباط برقرار نشد. لطفاً اینترنت یا توکن را بررسی کنید.");
+        console.error("Telegram Error:", err);
+      });
+    });
+  </script>
+</body>
+</html>
